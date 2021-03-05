@@ -33,6 +33,7 @@ Route::middleware('auth:sanctum', 'verified')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('welcome');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/generate/{id}', [DashboardController::class, 'generate'])->name('dashboard.generate');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
