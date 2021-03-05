@@ -3,7 +3,8 @@
         :headers="headers"
         :items="customersNutritions"
         :items-per-page="itemsPerPage"
-        sort-by="name"
+        sort-by="updatedAt"
+        :sort-desc="true"
         class="elevation-1"
         :loading="isLoading"
         :search="search"
@@ -118,31 +119,24 @@ export default {
             self.isLoading = true;
 
             axios
-                .get(route("customer.index"))
+                .get(route("nutrition.index"))
                 .then(function(response) {
-                    // console.log(response);
+                    console.log(response);
 
-                    response.data.forEach(customer => {
-                        if (customer.nutrition) {
+                    response.data.forEach(nutrition => {
+                        if (nutrition) {
                             self.customersNutritions.push({
-                                id: customer.nutrition
-                                    ? customer.nutrition.id
-                                    : null,
+                                id: nutrition ? nutrition.id : null,
                                 name:
-                                    customer.first_name +
+                                    nutrition.customer.first_name +
                                     " " +
-                                    customer.last_name,
-                                calories: customer.nutrition
-                                    ? customer.nutrition.calories
-                                    : null,
-                                fat: customer.nutrition
-                                    ? customer.nutrition.fat
-                                    : null,
-                                carbs: customer.nutrition
-                                    ? customer.nutrition.carbs
-                                    : null,
-                                protein: customer.nutrition
-                                    ? customer.nutrition.protein
+                                    nutrition.customer.last_name,
+                                calories: nutrition ? nutrition.calories : null,
+                                fat: nutrition ? nutrition.fat : null,
+                                carbs: nutrition ? nutrition.carbs : null,
+                                protein: nutrition ? nutrition.protein : null,
+                                updatedAt: nutrition
+                                    ? nutrition.updated_at
                                     : null
                             });
                         }
