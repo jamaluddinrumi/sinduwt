@@ -3,8 +3,7 @@
         <v-system-bar color="primary"> </v-system-bar>
         <v-navigation-drawer app v-model="drawer">
             <div class="flex justify-center my-4">
-                <jet-authentication-card-logo v-if="!$vuetify.theme.dark" />
-                <jet-authentication-card-logo-dark v-else />
+                <jet-application-logo></jet-application-logo>
             </div>
             <v-divider></v-divider>
             <v-subheader>{{
@@ -237,14 +236,12 @@
 </template>
 <script>
 import CountryFlag from "vue-country-flag";
-import JetAuthenticationCardLogo from "@/Jetstream/AuthenticationCardLogo";
-import JetAuthenticationCardLogoDark from "@/Jetstream/AuthenticationCardLogoDark";
+import JetApplicationLogo from "@/Jetstream/ApplicationLogo";
 
 export default {
     components: {
         CountryFlag,
-        JetAuthenticationCardLogo,
-        JetAuthenticationCardLogoDark
+        JetApplicationLogo
     },
     mounted() {},
     data() {
