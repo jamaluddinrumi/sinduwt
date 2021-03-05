@@ -11,7 +11,10 @@
                 $vuetify.lang.t("$vuetify.mainMenu")
             }}</v-subheader>
             <v-list rounded>
-                <v-list-item-group v-model="activeMainMenu">
+                <v-list-item-group
+                    v-model="activeMainMenu"
+                    active-class="dark:text-gray-100"
+                >
                     <inertia-link
                         v-for="menu_item in menu"
                         :href="menu_item.href"
@@ -208,7 +211,7 @@
             </v-container>
         </v-main>
 
-        <v-footer app dark padless> </v-footer>
+        <v-footer app padless> </v-footer>
         <v-fab-transition>
             <v-btn
                 v-scroll="onScroll"
