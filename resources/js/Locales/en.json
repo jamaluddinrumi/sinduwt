@@ -144,7 +144,7 @@
             "successfullyEdited": "Nutrition for {0} is successfully edited",
             "successfullyAdded": "Nutrition for {0} is successfully added",
             "createdAt": "Created At",
-            "updateAt": "Updated At",
+            "updatedAt": "Updated At",
             "downloadSummary": "Summary",
             "addNutrition": "Add Nutrition",
             "editNutrition": "Edit Nutrition"
