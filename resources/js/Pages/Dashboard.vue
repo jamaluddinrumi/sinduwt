@@ -22,14 +22,6 @@
                 ></dashboard-customers-nutritions-table>
             </v-col>
         </v-row>
-        <div class="text-h4 mt-6 mb-4">
-            {{ $vuetify.lang.t("$vuetify.staffs") }}
-        </div>
-        <v-row>
-            <v-col v-for="user_item in users" :key="user_item.id"
-                ><contact-card :user="user_item"></contact-card
-            ></v-col>
-        </v-row>
     </layout>
 </template>
 <script>
