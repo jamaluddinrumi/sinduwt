@@ -165,10 +165,13 @@
                         </v-list-item>
                     </v-list>
                     <v-divider></v-divider>
-                    <v-list-item-group>
+                    <v-list-item-group
+                        v-model="activeUserMenu"
+                        active-class="dark:text-gray-100"
+                    >
                         <inertia-link
-                            v-for="(menu_item, index) in userMenu"
-                            :key="index"
+                            v-for="menu_item in userMenu"
+                            :key="menu_item.id"
                             :href="
                                 menu_item.href !== '/logout'
                                     ? menu_item.href
@@ -256,11 +259,33 @@ export default {
     },
     watch: {},
     computed: {
-        activeMainMenu: function() {
-            let selectedMenu = this.menu.find(
-                element => element.href === this.$page.url
-            );
-            return selectedMenu.id;
+        activeUserMenu: {
+            get: function() {
+                let selectedMenu = this.userMenu.find(
+                    element => element.href === this.$page.url
+                );
+                if (selectedMenu) {
+                    return selectedMenu.id;
+                }
+                return null;
+            },
+            set: function(newValue) {
+                return newValue;
+            }
+        },
+        activeMainMenu: {
+            get: function() {
+                let selectedMenu = this.menu.find(
+                    element => element.href === this.$page.url
+                );
+                if (selectedMenu) {
+                    return this.$page.url === "/" ? 0 : selectedMenu.id;
+                }
+                return null;
+            },
+            set: function(newValue) {
+                return newValue;
+            }
         },
         userName: function() {
             return _.startCase(this.$page.props.user.name);
