@@ -144,31 +144,31 @@
                     </v-btn>
                 </template>
                 <v-list rounded>
-                    <v-list>
-                        <v-list-item>
-                            <v-list-item-avatar>
-                                <v-img
-                                    :src="$page.props.user.profile_photo_url"
-                                    :alt="$page.props.user.name"
-                                ></v-img>
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                                <v-list-item-title class="text-left">
-                                    <!-- <v-skeleton-loader class="mx-auto" type="text"></v-skeleton-loader> -->
-                                    <span>{{ userName }}</span>
-                                </v-list-item-title>
-                                <v-list-item-subtitle class="text-left">
-                                    <!-- <v-skeleton-loader class="mx-auto" type="text"></v-skeleton-loader> -->
-                                    <span>{{ $page.props.user.email }}</span>
-                                </v-list-item-subtitle>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
+                    <v-list-item>
+                        <v-list-item-avatar>
+                            <v-img
+                                :src="$page.props.user.profile_photo_url"
+                                :alt="$page.props.user.name"
+                            ></v-img>
+                        </v-list-item-avatar>
+                        <v-list-item-content>
+                            <v-list-item-title class="text-left">
+                                <!-- <v-skeleton-loader class="mx-auto" type="text"></v-skeleton-loader> -->
+                                <span>{{ userName }}</span>
+                            </v-list-item-title>
+                            <v-list-item-subtitle class="text-left">
+                                <!-- <v-skeleton-loader class="mx-auto" type="text"></v-skeleton-loader> -->
+                                <span>{{ $page.props.user.email }}</span>
+                            </v-list-item-subtitle>
+                        </v-list-item-content>
+                    </v-list-item>
                     <v-divider></v-divider>
+                    <v-subheader class="mb-4">{{
+                        $vuetify.lang.t("$vuetify.preferencesMenu")
+                    }}</v-subheader>
                     <v-list-item-group
                         v-model="activeUserMenu"
                         active-class="dark:text-gray-100"
-                        class="mt-2"
                     >
                         <inertia-link
                             v-for="menu_item in userMenu"
