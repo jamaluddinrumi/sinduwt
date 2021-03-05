@@ -83,7 +83,7 @@ class DashboardController extends Controller
         $template->setValue('email', $email);
         $template->setValue('updated_at', $updated_at);
 
-        $filename_docx = Str::snake("$first_name$last_name.docx");
+        $filename_docx = Str::snake("$first_name$last_name customer_nutrition.docx");
 
         $temp_docx_path = storage_path("temp/$filename_docx");
 
