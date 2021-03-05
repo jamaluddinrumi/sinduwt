@@ -168,6 +168,7 @@
                     <v-list-item-group
                         v-model="activeUserMenu"
                         active-class="dark:text-gray-100"
+                        class="mt-2"
                     >
                         <inertia-link
                             v-for="menu_item in userMenu"
