@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Events\NutritionAdded;
-use App\Models\Nutrition;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\NutritionResource;
 use Illuminate\Support\Facades\Validator;
-use phpDocumentor\Reflection\Types\Resource_;
 
 class NutritionController extends Controller
 {
@@ -19,7 +17,7 @@ class NutritionController extends Controller
      */
     public function index()
     {
-        return NutritionResource::collection(Nutrition::all()->load('customer'));
+        return NutritionResource::collection(\App\Models\Nutrition::all()->load('customer'));
     }
 
     /**
@@ -46,7 +44,7 @@ class NutritionController extends Controller
 
         event(new NutritionAdded);
 
-        return new NutritionResource(Nutrition::create([
+        return new NutritionResource(\App\Models\Nutrition::create([
             'customer_id' => $request->customerId,
             'calories' => $request->calories,
             'fat' => $request->fat,
@@ -67,7 +65,7 @@ class NutritionController extends Controller
 
         // return response()->json($nutrition);
 
-        return new NutritionResource(Nutrition::findOrFail($id)->load('customer'));
+        return new NutritionResource(\App\Models\Nutrition::findOrFail($id)->load('customer'));
     }
 
     /**
@@ -93,7 +91,7 @@ class NutritionController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
-        $nutrition = Nutrition::findOrFail($request->id)->load('customer');
+        $nutrition = \App\Models\Nutrition::findOrFail($request->id)->load('customer');
 
         if ($nutrition) {
 
@@ -118,7 +116,7 @@ class NutritionController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $nutrition = Nutrition::findOrFail($id)->load('customer');
+        $nutrition = \App\Models\Nutrition::findOrFail($id)->load('customer');
 
         if ($nutrition) {
 

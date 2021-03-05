@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CustomerCollection;
 use App\Http\Resources\CustomerResource;
 use Illuminate\Support\Facades\Validator;
 
@@ -18,7 +16,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return CustomerResource::collection(Customer::all()->load('nutrition'));
+        return CustomerResource::collection(\App\Models\Customer::all()->load('nutrition'));
     }
 
     /**
@@ -45,7 +43,7 @@ class CustomerController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
-        return new CustomerResource(Customer::create([
+        return new CustomerResource(\App\Models\Customer::create([
             'first_name' => $request->firstName,
             'last_name' => $request->lastName,
             'title' => $request->title,
@@ -65,7 +63,7 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        return new CustomerResource(Customer::findOrFail($id)->load('nutrition'));
+        return new CustomerResource(\App\Models\Customer::findOrFail($id)->load('nutrition'));
     }
 
     /**
@@ -94,7 +92,7 @@ class CustomerController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
-        $customer = Customer::findOrFail($request->id);
+        $customer = \App\Models\Customer::findOrFail($request->id);
 
         if ($customer) {
 
@@ -123,7 +121,7 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        $customer = Customer::findOrFail($id);
+        $customer = \App\Models\Customer::findOrFail($id);
 
         if ($customer) {
 
