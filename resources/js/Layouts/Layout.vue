@@ -261,7 +261,7 @@ export default {
                 {
                     id: 0,
                     title:
-                        "Maecenas sed diam eget risus varius blandit sit amet non magna.",
+                        "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
                 },
                 {
                     id: 1,
