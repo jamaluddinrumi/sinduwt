@@ -121,7 +121,7 @@ export default {
             axios
                 .get(route("nutrition.index"))
                 .then(function(response) {
-                    console.log(response);
+                    // console.log(response);
 
                     response.data.forEach(nutrition => {
                         if (nutrition) {

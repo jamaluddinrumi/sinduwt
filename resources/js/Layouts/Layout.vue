@@ -11,11 +11,11 @@
                 $vuetify.lang.t("$vuetify.mainMenu")
             }}</v-subheader>
             <v-list rounded>
-                <v-list-item-group>
+                <v-list-item-group v-model="activeMainMenu">
                     <inertia-link
                         v-for="menu_item in menu"
-                        :key="menu_item.id"
                         :href="menu_item.href"
+                        :key="menu_item.id"
                         class="no-underline"
                     >
                         <v-list-item
@@ -237,7 +237,7 @@ export default {
     components: {
         CountryFlag,
         JetAuthenticationCardLogo,
-        JetAuthenticationCardLogoDark,
+        JetAuthenticationCardLogoDark
     },
     mounted() {},
     data() {
@@ -248,70 +248,76 @@ export default {
             isLogoutButtonDisabled: false,
             isLogouting: false,
             drawer: !this.$vuetify.breakpoint.mobile,
-            group: 0,
+            group: 0
         };
     },
     watch: {},
     computed: {
-        userName: function () {
+        activeMainMenu: function() {
+            let selectedMenu = this.menu.find(
+                element => element.href === this.$page.url
+            );
+            return selectedMenu.id;
+        },
+        userName: function() {
             return _.startCase(this.$page.props.user.name);
         },
-        notifMenu: function () {
+        notifMenu: function() {
             return [
                 {
                     id: 0,
                     title:
-                        "Lorem ipsum dolor sit amet consectetur adipiscing elit.",
+                        "Lorem ipsum dolor sit amet consectetur adipiscing elit."
                 },
                 {
                     id: 1,
-                    title: "Vestibulum id ligula porta felis euismod semper.",
+                    title: "Vestibulum id ligula porta felis euismod semper."
                 },
                 {
                     id: 2,
                     title:
-                        "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.",
-                },
+                        "Duis mollis, est non commodo luctus, nisi erat porttitor ligula."
+                }
             ];
         },
-        menu: function () {
+        menu: function() {
             return [
                 {
                     id: 0,
                     title: this.$vuetify.lang.t("$vuetify.title.dashboard"),
                     href: "/dashboard",
-                    icon: "fas fa-home",
+                    icon: "fas fa-home"
                 },
                 {
                     id: 1,
                     title: this.$vuetify.lang.t("$vuetify.title.nutrition"),
                     href: "/nutrition",
-                    icon: "fas fa-utensils",
+                    icon: "fas fa-utensils"
                 },
                 {
                     id: 2,
                     title: this.$vuetify.lang.t("$vuetify.title.customer"),
                     href: "/customer",
-                    icon: "fas fa-user",
-                },
+                    icon: "fas fa-user"
+                }
             ];
         },
-        userMenu: function () {
+        userMenu: function() {
             return [
                 {
                     id: 0,
                     title: this.$vuetify.lang.t("$vuetify.profile.profile"),
                     href: "/profile",
-                    icon: "fas fa-cog",
+                    icon: "fas fa-cog"
                 },
                 {
                     id: 1,
                     title: this.$vuetify.lang.t("$vuetify.logout"),
                     href: "/logout",
-                    icon: "fas fa-sign-out-alt",
-                },
+                    icon: "fas fa-sign-out-alt"
+                }
             ];
-        },
+        }
     },
     created() {},
     methods: {
@@ -332,7 +338,7 @@ export default {
 
             axios
                 .post(`/lang/${this.$i18n.locale}`)
-                .then(function (response) {
+                .then(function(response) {
                     console.log(response);
 
                     self.title = route().current();
@@ -344,10 +350,10 @@ export default {
                             translationTitle ?? _.capitalize(self.title);
                     }
                 })
-                .catch(function (error) {
+                .catch(function(error) {
                     console.error(error);
                 })
-                .then(function (response) {
+                .then(function(response) {
                     console.log(response);
                 });
         },
@@ -359,12 +365,11 @@ export default {
         logout() {
             this.loading = true;
             this.isLogouting = true;
-            axios.post(route("logout")).then((response) => {
+            axios.post(route("logout")).then(response => {
                 window.location = "login";
             });
-        },
-    },
+        }
+    }
 };
 </script>
-<style>
-</style>
+<style></style>
