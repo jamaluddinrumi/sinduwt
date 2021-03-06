@@ -277,7 +277,10 @@ export default {
                     element => element.href === this.$page.url
                 );
                 if (selectedMenu) {
-                    return this.$page.url === "/" ? 0 : selectedMenu.id;
+                    return selectedMenu.id;
+                }
+                if (this.$page.url === "/") {
+                    return 0;
                 }
                 return null;
             },
